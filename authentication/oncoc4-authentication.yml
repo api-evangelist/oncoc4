@@ -1,0 +1,75 @@
+generated: '2026-08-04'
+method: probed
+source: https://oncoc4.com/.well-known/openid-configuration
+name: OncoC4 authentication profile
+description: >-
+  OncoC4 publishes no developer-facing API and therefore no developer
+  authentication scheme. The only authentication surface reachable anonymously on
+  oncoc4.com is the Umbraco CMS Delivery API *member* authorization server, whose
+  OpenID Connect discovery document is served at /.well-known/openid-configuration.
+  This profile is derived verbatim from that document. It describes website member
+  login, not an API product.
+caveat: >-
+  Not a developer API auth profile. Umbraco ships this authorization server by
+  default with the Delivery API; its presence says nothing about an API program.
+  The endpoints it advertises live under /umbraco/, which oncoc4.com/robots.txt
+  disallows, so they were not crawled.
+schemes:
+- id: umbraco_delivery_member_oidc
+  type: openIdConnect
+  standard: OpenID Connect 1.0 / OAuth 2.0
+  openIdConnectUrl: https://oncoc4.com/.well-known/openid-configuration
+  issuer: https://oncoc4.com/
+  endpoints:
+    authorization: https://oncoc4.com/umbraco/delivery/api/v1/security/member/authorize
+    token: https://oncoc4.com/umbraco/delivery/api/v1/security/member/token
+    userinfo: https://oncoc4.com/umbraco/delivery/api/v1/security/member/userinfo
+    end_session: https://oncoc4.com/umbraco/delivery/api/v1/security/member/signout
+    revocation: https://oncoc4.com/umbraco/delivery/api/v1/security/member/revoke
+    jwks: https://oncoc4.com/.well-known/jwks
+  grant_types:
+  - authorization_code
+  - refresh_token
+  response_types:
+  - code
+  response_modes:
+  - form_post
+  - fragment
+  - query
+  pkce:
+    supported: true
+    code_challenge_methods:
+    - plain
+    - S256
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_post
+  id_token_signing_alg_values:
+  - RS256
+  subject_types:
+  - public
+  claims:
+  - aud
+  - exp
+  - iat
+  - iss
+  - sub
+  scopes:
+  - openid
+  - offline_access
+  features:
+    claims_parameter_supported: false
+    request_parameter_supported: false
+    request_uri_parameter_supported: false
+    authorization_response_iss_parameter_supported: true
+notes:
+- No API key, HTTP bearer, basic, or mutualTLS scheme is documented anywhere on
+  the public OncoC4 surface.
+- PKCE advertises `plain` alongside `S256`; `plain` is a downgrade path and is
+  discouraged by RFC 7636 for public clients.
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://oncoc4.com/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json;charset=UTF-8
+  file: well-known/oncoc4-openid-configuration.json

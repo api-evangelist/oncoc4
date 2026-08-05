@@ -1,7 +1,18 @@
 aid: oncoc4
 name: OncoC4
-description: 'OncoC4 is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'OncoC4, Inc. is a privately held, late clinical-stage biopharmaceutical
+  company headquartered in Rockville, Maryland, founded in 2020, with subsidiaries
+  in Nanjing, Guangzhou and Beijing, China, and Brisbane, Australia. The company discovers
+  and develops novel biologics for the treatment of cancer, working across immune
+  checkpoints including CTLA-4, CD24, PD-1/VEGF and the Siglec family, with monoclonal
+  antibodies, bispecific antibodies, antibody-drug conjugates and CAR T-cell therapies.
+  Its lead clinical candidate is gotistobart (BNT316/ONC-392), a next-generation
+  anti-CTLA-4 antibody co-developed and commercialized with BioNTech under a strategic
+  collaboration announced in March 2023. OncoC4 publishes no developer program, public
+  API, SDK or developer documentation; its corporate website runs on the Umbraco CMS,
+  which serves a default OpenID Connect / OAuth 2.0 discovery document and JWKS for
+  CMS member authentication.'
+image: https://oncoc4.com/media/tlofbavh/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/oncoc4/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -12,6 +23,14 @@ created: '2026-08-04'
 modified: '2026-08-04'
 tags:
 - Company
+- Biotechnology
+- Biopharmaceutical
+- Life Sciences
+- Oncology
+- Immunotherapy
+- Clinical Trials
+- Healthcare
+- Pharmaceuticals
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +38,57 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/oncoc4-domain-security.yml
+- type: WellKnown
+  url: well-known/oncoc4-well-known.yml
+- type: Authentication
+  url: authentication/oncoc4-authentication.yml
+- type: OAuthScopes
+  url: scopes/oncoc4-scopes.yml
+- type: Conformance
+  url: conformance/oncoc4-conformance.yml
+- type: LLMsTxt
+  url: llms/oncoc4-llms.txt
 - type: Website
+  url: https://oncoc4.com/en/
+- type: About
+  url: https://oncoc4.com/en/about-us/
+- type: Contact
+  url: https://oncoc4.com/en/contact/
+- type: PrivacyPolicy
+  url: https://oncoc4.com/en/privacy-policy/
+- type: Careers
+  url: https://oncoc4.com/en/careers/
+- type: News
+  url: https://oncoc4.com/en/news-resources/news/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/oncoc4
+- type: SecondaryMarket
   url: https://forgeglobal.com/oncoc4_stock/
+x-enrichment:
+  date: '2026-08-04'
+  status: minimal
+  artifacts_added: 9
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: not-a-software-company
+  detail: >-
+    OncoC4 is a late clinical-stage biopharmaceutical company whose product is a
+    drug, not software — the entire oncoc4.com site is an Umbraco-hosted corporate
+    brochure (about, pipeline, clinical trials, publications, careers) with no
+    developer section, and the only machine-readable documents it serves are
+    Umbraco's default OIDC/OAuth member-login discovery files.
+  evidence:
+  - url: https://oncoc4.com/openapi.json
+    status: 404
+  - url: https://oncoc4.com/api-docs
+    status: 404
+  - url: https://oncoc4.com/graphql
+    status: 404
+  - url: https://oncoc4.com/.well-known/agent-card.json
+    status: 404
+  - url: https://oncoc4.com/.well-known/openid-configuration
+    status: 200
+  checked: '2026-08-04'

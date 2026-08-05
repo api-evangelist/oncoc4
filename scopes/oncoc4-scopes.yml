@@ -1,0 +1,40 @@
+generated: '2026-08-04'
+method: probed
+source: https://oncoc4.com/.well-known/openid-configuration
+name: OncoC4 OAuth scopes
+description: >-
+  The complete set of OAuth 2.0 / OpenID Connect scopes advertised by the only
+  authorization server OncoC4 serves publicly — the Umbraco CMS Delivery API
+  member authorization server on oncoc4.com. Taken verbatim from
+  `scopes_supported` in the discovery document. There is no developer API and no
+  developer-facing permission model.
+issuer: https://oncoc4.com/
+authorization_server: umbraco_delivery_member_oidc
+docs: null
+scopes:
+- name: openid
+  description: >-
+    Standard OpenID Connect scope requesting an ID token for the authenticated
+    Umbraco CMS member.
+  standard: true
+  source: openid-configuration scopes_supported
+- name: offline_access
+  description: >-
+    Standard OpenID Connect scope requesting a refresh token so the client can
+    renew the member session without re-authentication.
+  standard: true
+  source: openid-configuration scopes_supported
+counts:
+  total: 2
+  standard: 2
+  provider_specific: 0
+notes:
+- No provider-specific or resource scopes are published. Both scopes are generic
+  OIDC scopes emitted by Umbraco's default configuration.
+- No scopes/permissions reference page exists on the OncoC4 site; a docs search
+  across oncoc4.com found no developer documentation of any kind.
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://oncoc4.com/.well-known/openid-configuration
+  http_status: 200
+  file: well-known/oncoc4-openid-configuration.json
