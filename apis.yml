@@ -12,6 +12,17 @@ description: 'OncoC4, Inc. is a privately held, late clinical-stage biopharmaceu
   API, SDK or developer documentation; its corporate website runs on the Umbraco CMS,
   which serves a default OpenID Connect / OAuth 2.0 discovery document and JWKS for
   CMS member authentication.'
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 image: https://oncoc4.com/media/tlofbavh/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/oncoc4/refs/heads/main/apis.yml
 x-type: company
