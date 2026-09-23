@@ -2,14 +2,11 @@ generated: '2026-08-04'
 method: probed
 source: https://oncoc4.com/.well-known/
 name: OncoC4 well-known discovery documents
-description: >-
-  Result of probing the RFC 8615 /.well-known/ namespace on the OncoC4 corporate
-  host (oncoc4.com). The three hits are Umbraco CMS defaults — the Umbraco
-  Delivery API ships an OpenID Connect / OAuth 2.0 authorization server for CMS
-  *member* authentication, and its discovery documents are served anonymously.
-  They are not a developer-facing API program; OncoC4 publishes no developer
-  portal, API documentation or SDKs. Recorded verbatim because they are real,
-  publicly served, machine-readable artifacts.
+description: Result of probing the RFC 8615 /.well-known/ namespace on the OncoC4 corporate host (oncoc4.com).
+  The three hits are Umbraco CMS defaults — the Umbraco Delivery API ships an OpenID Connect / OAuth 2.0
+  authorization server for CMS *member* authentication, and its discovery documents are served anonymously.
+  They are not a developer-facing API program; OncoC4 publishes no developer portal, API documentation
+  or SDKs. Recorded verbatim because they are real, publicly served, machine-readable artifacts.
 host: oncoc4.com
 platform: Umbraco CMS (Delivery API member authentication)
 probes:
@@ -23,16 +20,14 @@ probes:
   status: 200
   content_type: application/json;charset=UTF-8
   file: oncoc4-oauth-authorization-server.json
-  note: >-
-    Byte-identical to the OpenID Connect discovery document; Umbraco serves the
-    same payload at both paths.
+  note: Byte-identical to the OpenID Connect discovery document; Umbraco serves the same payload at both
+    paths.
 - path: /.well-known/jwks
   url: https://oncoc4.com/.well-known/jwks
   status: 200
   content_type: application/json;charset=UTF-8
   file: oncoc4-jwks.json
-  note: >-
-    Public RSA signing key set (RS256). Public keys only — no secret material.
+  note: Public RSA signing key set (RS256). Public keys only — no secret material.
 - path: /.well-known/security.txt
   url: https://oncoc4.com/.well-known/security.txt
   status: 404
@@ -62,3 +57,31 @@ x-evidence:
   - api.oncoc4.com
   - developer.oncoc4.com
   - docs.oncoc4.com
+hosts:
+- host: oncoc4.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: oncoc4-openid-configuration.json
+    content_type: application/json;charset=UTF-8
+    url: https://oncoc4.com/.well-known/openid-configuration
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: oncoc4-oauth-authorization-server.json
+    content_type: application/json;charset=UTF-8
+    note: Byte-identical to the OpenID Connect discovery document; Umbraco serves the same payload at
+      both paths.
+    url: https://oncoc4.com/.well-known/oauth-authorization-server
+  - path: /.well-known/jwks
+    status: 200
+    file: oncoc4-jwks.json
+    content_type: application/json;charset=UTF-8
+    note: Public RSA signing key set (RS256). Public keys only — no secret material.
+    url: https://oncoc4.com/.well-known/jwks
+x-shape-fix:
+  converted: '2026-08-20'
+  from: probes
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent. Promoted ONLY the 2xx rows out of
+    the probe log; non-2xx probes are real negative results and were left in place, not converted into
+    documents.
